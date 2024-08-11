@@ -65,16 +65,29 @@ A estrutura básica do projeto é a seguinte:
 
     ```php
     <?php
-    $host = 'localhost';
-    $db = 'lista_de_tarefas';
-    $user = 'seu-usuario';
-    $pass = 'sua-senha';
+    class Conexao {
 
-    try {
-        $pdo = new PDO("mysql:host=$host;dbname=$db", $user, $pass);
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    } catch (PDOException $e) {
-        echo "Erro na conexão: " . $e->getMessage();
+        private $host = 'localhost';
+        private $dbname = 'lista_tarefas';
+        private $user = 'seu-usuario';
+        private $pass = 'sua-senha';
+
+        public function conectar(){
+            try {
+
+                $conexao = new PDO(
+                    "mysql:host=$this->host;dbname=$this->dbname",
+                    "$this->user",
+                    "$this->pass"
+                );
+
+                return $conexao;
+
+            } catch (PDOException $e){
+                echo '<p>' . $e->getMessage() . '</p>';
+            }
+        }
+
     }
     ?>
     ```
