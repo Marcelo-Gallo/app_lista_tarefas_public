@@ -1,3 +1,10 @@
+<?php
+	$acao = 'recuperar';
+	//em função do escopo, estou recuperando o controller public
+	require 'tarefa_controller.php';
+
+?>
+
 <html>
 	<head>
 		<meta charset="utf-8" />
