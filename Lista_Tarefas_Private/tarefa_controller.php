@@ -4,11 +4,6 @@
     require "../../app_lista_tarefas/tarefa.model.php";
     require "../../app_lista_tarefas/tarefa.service.php";
     require "../../app_lista_tarefas/conexao.php";
-    
-    //para debug:
-    echo '<pre>';
-    print_r($_POST);
-    echo '</pre>';
 
     //nova instancia do objeto tarefa
     $tarefa = new Tarefa();
@@ -20,9 +15,7 @@
 
     $tarefaService = new TarefaService($conexao, $tarefa);
     $tarefaService->inserir();
-    //para debug:
-    echo '<pre>';
-    print_r($tarefaService);
-    echo '</pre>';
     
+    //está no contexto publico, então não há necessidade de formatar o caminho
+    header('Location: nova_tarefa.php?inclusao=1');
 ?>
