@@ -33,15 +33,18 @@
 
         public function atualizar(){ //update
             
-            $query = "update tb_tarefas set tarefa = :tarefa where id = :id";
+            $query = "update tb_tarefas set tarefa = ? where id = ?";
             $stmt = $this->conexao->prepare($query);
-            $stmt->bindValue(':tarefa', $this->tarefa->__get('tarefa'));
-            $stmt->bindValue(':id', $this->tarefa->__get('id'));
+            $stmt->bindValue(1, $this->tarefa->__get('tarefa'));
+            $stmt->bindValue(2, $this->tarefa->__get('id'));
             return $stmt->execute();
 
         }
         public function remover(){ //delete
-
+            $query = 'delete from tb_tarefas where id = ?';
+            $stmt = $this->conexao->prepare($query);
+            $stmt->bindValue(1, $this->tarefa->__get('id'));
+            $stmt->execute();
         }
 
     }
